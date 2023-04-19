@@ -213,6 +213,9 @@ Run the function locally from the same directory where the template.yaml resides
   sam build
   sam local invoke --parameter-overrides "MongoDbUri=${MONGODB_URI}"
 
+*NOTE* "127.0.0.1" in the MONGODB_URT MUST be replaced with "host.docker.internal" to test
+a local MongoDB deployment.
+
 
 Implementing the Function
 `````````````````````````
