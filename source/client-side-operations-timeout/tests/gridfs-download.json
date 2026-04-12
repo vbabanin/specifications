@@ -1,6 +1,6 @@
 {
   "description": "timeoutMS behaves correctly for GridFS download operations",
-  "schemaVersion": "1.9",
+  "schemaVersion": "1.26",
   "runOnRequirements": [
     {
       "minServerVersion": "4.4",
@@ -18,8 +18,10 @@
       "client": {
         "id": "client",
         "uriOptions": {
-          "timeoutMS": 75
+          "timeoutMS": 75,
+          "minPoolSize": 1
         },
+        "awaitMinPoolSizeMS": 10000,
         "useMultipleMongoses": false,
         "observeEvents": [
           "commandStartedEvent"
