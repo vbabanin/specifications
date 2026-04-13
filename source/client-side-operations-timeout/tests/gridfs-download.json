@@ -301,7 +301,7 @@
                   "find"
                 ],
                 "blockConnection": true,
-                "blockTimeMS": 50
+                "blockTimeMS": 100
               }
             }
           }
@@ -312,7 +312,8 @@
           "arguments": {
             "id": {
               "$oid": "000000000000000000000005"
-            }
+            },
+            "timeoutMS": 195
           },
           "expectError": {
             "isTimeoutError": true

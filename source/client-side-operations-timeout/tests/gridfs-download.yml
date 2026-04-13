@@ -146,13 +146,13 @@ tests:
                 maxTimeMS: { $$type: ["int", "long"] }
 
   # Test that drivers are not refreshing the timeout between commands. We test this by blocking both "find" commands
-  # for 50ms each. The download should inherit timeoutMS=75 from the client/database and the server takes over 75ms
+  # for 100ms each. The download overrides timeoutMS=200 and the server takes over 200ms
   # total, so the operation should fail.
   - description: "timeoutMS applied to entire download, not individual parts"
     operations:
       - name: failPoint
         object: testRunner
-        arguments:  
+        arguments:
           client: *failPointClient
           failPoint:
             configureFailPoint: failCommand
@@ -160,11 +160,12 @@ tests:
             data:
               failCommands: ["find"]
               blockConnection: true
-              blockTimeMS: 50
+              blockTimeMS: 100
       - name: download
         object: *bucket
         arguments:
           id: *fileDocumentId
+          timeoutMS: 195
         expectError:
           isTimeoutError: true
     expectEvents:
